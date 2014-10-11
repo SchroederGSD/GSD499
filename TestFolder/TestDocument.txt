@@ -1,3 +1,5 @@
 This is a test document.
 
 Adding second line to continue test.
+
+Adding third line before updating.
