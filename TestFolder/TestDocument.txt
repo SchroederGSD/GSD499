@@ -1,13 +1,7 @@
 This is a test document.
 
-<<<<<<< HEAD
 Adding second line to continue test.
 
-<<<<<<< HEAD
 Adding third line before updating.
-=======
+
 Third line of testing on second computer.
->>>>>>> origin/master
-=======
-Adding second line to continue test.
->>>>>>> parent of 5ba5b15... Testing possible issues.
