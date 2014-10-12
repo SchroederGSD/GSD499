@@ -5,5 +5,3 @@ Adding second line to continue test.
 Adding third line before updating.
 
 Third line of testing on second computer.
-
-Anoter new line.
