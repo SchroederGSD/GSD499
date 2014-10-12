@@ -1,0 +1,18 @@
+This folder will contain our final project.  In order to effectively use this
+means of sharing our project, we have to follow specific guidelines and procedures.
+
+First, before doing any work on the project that is in this folder, you must sync
+up the folder by going through the GitHub application and click sync.
+
+Secound, before altering any existing part of the project, such as code, you must
+inform the other member that you will be working on that part.  This is important as
+it will cause issues when the second person tries to commit.
+
+Third, after you are done working, you must commit and sync all your changes.
+
+These are the instructions so far.  As the project moves along, more instructions may
+be added.  Once you have acknowledged these instructions, add your name and date to
+the bottom of this file.
+
+
+Kyle Schroeder - 10/12/2014
