@@ -10,6 +10,8 @@ it will cause issues when the second person tries to commit.
 
 Third, after you are done working, you must commit and sync all your changes.
 
+Fourth, do not delete any file without confirming with the other member.
+
 These are the instructions so far.  As the project moves along, more instructions may
 be added.  Once you have acknowledged these instructions, add your name and date to
 the bottom of this file.
