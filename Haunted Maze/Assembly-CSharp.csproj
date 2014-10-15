@@ -47,13 +47,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Gem Shader\Example\GemSpawner.cs" />
-     <Compile Include="Assets\Group 1 Assets\Group 1 Scripts\EnemyScripts\scr_EnemyAI.cs" />
-     <Compile Include="Assets\Group 1 Assets\Group 1 Scripts\EnemyScripts\scr_EnemyAnimation.cs" />
-     <Compile Include="Assets\Group 1 Assets\Group 1 Scripts\EnemyScripts\scr_EnemyHealth.cs" />
-     <Compile Include="Assets\Group 1 Assets\Group 1 Scripts\GameScripts\scr_GameControl.cs" />
-     <Compile Include="Assets\Group 1 Assets\Group 1 Scripts\PlayerScript\scr_FlashlightControl.cs" />
-     <Compile Include="Assets\Group 1 Assets\Group 1 Scripts\PlayerScript\scr_PlayerControls.cs" />
-     <Compile Include="Assets\Group 1 Assets\Group 1 Scripts\UnappliedScripts\Tags.cs" />
+     <Compile Include="Assets\Group 1 Assets\Prototype\Scripts\EnemyScripts\scr_EnemyAI.cs" />
+     <Compile Include="Assets\Group 1 Assets\Prototype\Scripts\EnemyScripts\scr_EnemyAnimation.cs" />
+     <Compile Include="Assets\Group 1 Assets\Prototype\Scripts\EnemyScripts\scr_EnemyHealth.cs" />
+     <Compile Include="Assets\Group 1 Assets\Prototype\Scripts\GameScripts\scr_GameControl.cs" />
+     <Compile Include="Assets\Group 1 Assets\Prototype\Scripts\PlayerScripts\scr_FlashlightControl.cs" />
+     <Compile Include="Assets\Group 1 Assets\Prototype\Scripts\PlayerScripts\scr_PlayerControls.cs" />
+     <Compile Include="Assets\Group 1 Assets\Prototype\Scripts\UnappliedScripts\Tags.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
