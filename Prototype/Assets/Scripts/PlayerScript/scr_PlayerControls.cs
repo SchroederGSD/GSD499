@@ -17,8 +17,9 @@ public class scr_PlayerControls : MonoBehaviour {
 
 	private CharacterController cControler;
 	private GameObject objFlashlight;
-	private GameObject lightFlashlight;
-	
+
+	private scr_FlashlightControl scrFlashlightControl;
+
 	//*************************************************************************
 	//	Awake Method - Awake is called when the script instance is being loaded
 	//*************************************************************************
@@ -26,8 +27,7 @@ public class scr_PlayerControls : MonoBehaviour {
 	{
 		cControler = GetComponent<CharacterController>();
 		objFlashlight = GameObject.Find("obj_Flashlight");
-		lightFlashlight = GameObject.Find("light_Flashlight");
-		lightFlashlight.SetActive(false);
+		scrFlashlightControl = objFlashlight.GetComponent<scr_FlashlightControl>();
 	}
 	//*************************************************************************
 	//	Fixed Update Method
@@ -67,7 +67,6 @@ public class scr_PlayerControls : MonoBehaviour {
 	void MovePlayer()
 	{
 		float fltForward = 0f;
-		float fltSideWays = 0f;
 		Vector3 vecMovement;
 
 		float fltDeltaTime = Time.deltaTime;
@@ -85,18 +84,18 @@ public class scr_PlayerControls : MonoBehaviour {
 	void CheckFlashlightHit()
 	{
 		RaycastHit hit;
+		GameObject goEnemy;
 		LineRenderer line = GetComponent<LineRenderer>();
 		Vector3 position = objFlashlight.transform.position;
 
-		if (lightFlashlight.activeSelf == true)
+		if (scrFlashlightControl.blnFlashlightActive)
 		{
 			if (Physics.Raycast(position, transform.forward, out hit, fltRayLength))
 			{
 				if (hit.transform.tag == Tags.enemy)
 				{
-				//print ("Object name: " + hit.transform.name.ToString());
-					line.SetPosition (0, position);
-					line.SetPosition (1, hit.point);
+					goEnemy = hit.transform.gameObject;
+					goEnemy.GetComponent<scr_EnemyHealth>().TakeDamage(100f);
 				}
 			}
 		}
@@ -118,6 +117,16 @@ public class scr_PlayerControls : MonoBehaviour {
 				objFlashlight.GetComponent<Animation>().Play("anim_FlashlightRaise");
 				blnFlashlightOn = true;
 			}
+		}
+		if (scrFlashlightControl.blnFlashlightActive)
+		{
+			objFlashlight.GetComponentInChildren<Light>().enabled = true;
+			objFlashlight.GetComponentInChildren<ParticleSystemRenderer>().enabled = true;
+		}
+		else
+		{
+			objFlashlight.GetComponentInChildren<Light>().enabled = false;
+			objFlashlight.GetComponentInChildren<ParticleSystemRenderer>().enabled = false;
 		}
 	}
 }

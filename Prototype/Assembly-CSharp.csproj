@@ -47,7 +47,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyAI.cs" />
+     <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyAnimation.cs" />
+     <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\GameScripts\scr_GameControl.cs" />
+     <Compile Include="Assets\Scripts\PlayerScript\scr_FlashlightControl.cs" />
      <Compile Include="Assets\Scripts\PlayerScript\scr_PlayerControls.cs" />
      <Compile Include="Assets\Scripts\UnappliedScripts\Tags.cs" />
   </ItemGroup>
