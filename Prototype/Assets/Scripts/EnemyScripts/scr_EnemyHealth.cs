@@ -13,6 +13,7 @@ public class scr_EnemyHealth : MonoBehaviour {
 
 	private Vector3 vecStartPostion = new Vector3(100f, 500f, 100f);
 	private scr_EnemyAI scrEnemyAI;
+	private scr_EnemyAnimation scrEnemyAnimation;
 
 	//******************************************************************************
 	// Awake Method
@@ -21,6 +22,7 @@ public class scr_EnemyHealth : MonoBehaviour {
 	{
 		vecStartPostion = transform.position;
 		scrEnemyAI = GetComponent<scr_EnemyAI>();
+		scrEnemyAnimation = GetComponent<scr_EnemyAnimation>();
 	}
 	//******************************************************************************
 	// Update Method
@@ -41,6 +43,7 @@ public class scr_EnemyHealth : MonoBehaviour {
 			fltTimer = 0f;
 			blnBanished = false;
 			ResetPosition();
+			scrEnemyAnimation.ResetMaterials();
 		}
 	}
 	//******************************************************************************
@@ -51,6 +54,7 @@ public class scr_EnemyHealth : MonoBehaviour {
 		scrEnemyAI.SetWaypointIndex(0);
 		transform.position = vecStartPostion;
 		scrEnemyAI.enabled = true;
+		scrEnemyAI.RespawnGhost();
 	}
 	//******************************************************************************
 	// Take Damage Method - Reduces enemy's health
@@ -62,6 +66,7 @@ public class scr_EnemyHealth : MonoBehaviour {
 		if (fltHealth <= 0f)
 		{
 			blnBanished = true;
+			scrEnemyAI.BanishGhost();
 			scrEnemyAI.enabled = false;
 		}
 	}

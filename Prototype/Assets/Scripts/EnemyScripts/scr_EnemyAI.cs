@@ -65,6 +65,23 @@ public class scr_EnemyAI : MonoBehaviour {
 		transform.LookAt(transform.position + navAgent.desiredVelocity);
 	}
 	//*************************************************************************
+	//	Banish Ghost Method - Stops movement and makes ghost inactive
+	//*************************************************************************
+	public void BanishGhost()
+	{
+		navAgent.Stop();
+		GetComponent<SphereCollider>().enabled = false;
+		GetComponentInChildren<Light>().enabled = false;
+	}
+	//*************************************************************************
+	//	Respawn Ghost Method - Makes ghost active
+	//*************************************************************************
+	public void RespawnGhost()
+	{
+		GetComponent<SphereCollider>().enabled = true;
+		GetComponentInChildren<Light>().enabled = true;
+	}
+	//*************************************************************************
 	// Setters and Getters
 	//*************************************************************************
 	public void SetWaypointIndex(int index)
