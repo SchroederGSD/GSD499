@@ -85,7 +85,6 @@ public class scr_PlayerControls : MonoBehaviour {
 	{
 		RaycastHit hit;
 		GameObject goEnemy;
-		LineRenderer line = GetComponent<LineRenderer>();
 		Vector3 position = objFlashlight.transform.position;
 
 		if (scrFlashlightControl.blnFlashlightActive)
@@ -105,6 +104,8 @@ public class scr_PlayerControls : MonoBehaviour {
 	//*************************************************************************
 	void ActivateFlashlight()
 	{
+		Light[] lightComponents = objFlashlight.GetComponentsInChildren<Light>();
+
 		if (Input.GetKeyDown("f"))
 		{
 			if (blnFlashlightOn)
@@ -120,12 +121,14 @@ public class scr_PlayerControls : MonoBehaviour {
 		}
 		if (scrFlashlightControl.blnFlashlightActive)
 		{
-			objFlashlight.GetComponentInChildren<Light>().enabled = true;
+			foreach (Light lightComp in lightComponents)
+				lightComp.enabled = true;
 			objFlashlight.GetComponentInChildren<ParticleSystemRenderer>().enabled = true;
 		}
 		else
 		{
-			objFlashlight.GetComponentInChildren<Light>().enabled = false;
+			foreach (Light lightComp in lightComponents)
+				lightComp.enabled = false;
 			objFlashlight.GetComponentInChildren<ParticleSystemRenderer>().enabled = false;
 		}
 	}

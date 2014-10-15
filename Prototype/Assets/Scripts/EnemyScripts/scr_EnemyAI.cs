@@ -18,6 +18,7 @@ public class scr_EnemyAI : MonoBehaviour {
 	private int intWaypointIndex = 0;
 
 	private bool blnAttackMode = false;
+	private scr_EnemySight scrEnemySight;
 
 	//*************************************************************************
 	//	Awake Method - Awake is called when the script instance is being loaded
@@ -26,13 +27,17 @@ public class scr_EnemyAI : MonoBehaviour {
 	{
 		navAgent = GetComponent<NavMeshAgent>();
 		fltSpeed = fltPartolSpeed;
+		scrEnemySight = GetComponent<scr_EnemySight>();
 	}
 	//*************************************************************************
 	//	Fixed Update Method
 	//*************************************************************************
 	void FixedUpdate ()
 	{
-
+		if (scrEnemySight.blnPlayerInSight)
+			blnAttackMode = true;
+		else
+			blnAttackMode = false;
 		Patrol();
 	}
 	//*************************************************************************
@@ -70,6 +75,7 @@ public class scr_EnemyAI : MonoBehaviour {
 	public void BanishGhost()
 	{
 		navAgent.Stop();
+		GetComponent<CapsuleCollider>().enabled = false;
 		GetComponent<SphereCollider>().enabled = false;
 		GetComponentInChildren<Light>().enabled = false;
 	}
@@ -78,6 +84,7 @@ public class scr_EnemyAI : MonoBehaviour {
 	//*************************************************************************
 	public void RespawnGhost()
 	{
+		GetComponent<CapsuleCollider>().enabled = true;
 		GetComponent<SphereCollider>().enabled = true;
 		GetComponentInChildren<Light>().enabled = true;
 	}

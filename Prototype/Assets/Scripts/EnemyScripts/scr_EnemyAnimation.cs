@@ -99,5 +99,6 @@ public class scr_EnemyAnimation : MonoBehaviour {
 		matAttack.color = new Color(fltRed, fltGreen, fltBlue,fltOpacity);
 
 		meshEnemy.material = matPatrol;
+		GetComponentInChildren<Light>().color = clrPatrolLight;
 	}
 }
