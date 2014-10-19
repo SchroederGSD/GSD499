@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyScripts\scr_EnemyAI.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\GSD_431\Schroeder_GSD431\Assets\Adventure Scripts\Objects\ObjectLookUp.js">
     <Files>
-      <File FileName="Assets\Scripts\EnemyScripts\scr_EnemySight.cs" Line="39" Column="71" />
-      <File FileName="Assets\Scripts\EnemyScripts\scr_EnemyAI.cs" Line="87" Column="31" />
-      <File FileName="Assets\Scripts\EnemyScripts\scr_EnemyHealth.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnemyScripts\scr_EnemyAnimation.cs" Line="102" Column="58" />
+      <File FileName="..\GSD_431\Schroeder_GSD431\Assets\Adventure Scripts\Objects\ObjectLookUp.js" Line="17" Column="31" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
