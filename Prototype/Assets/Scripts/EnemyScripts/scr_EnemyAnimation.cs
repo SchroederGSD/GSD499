@@ -12,7 +12,7 @@ public class scr_EnemyAnimation : MonoBehaviour {
 	public Material matAttack;
 
 	private MeshRenderer meshEnemy;
-	private scr_EnemyAI scrEnemyAI;
+	private scr_EnemySight scrEnemySight;
 	private scr_EnemyHealth scrEnemyHealth;
 	private bool blnAttackMode = false;
 	private float fltBanishRate = 0.05f;
@@ -22,7 +22,7 @@ public class scr_EnemyAnimation : MonoBehaviour {
 	//******************************************************************************
 	void Awake()
 	{
-		scrEnemyAI = GetComponent<scr_EnemyAI>();
+		scrEnemySight = GetComponent<scr_EnemySight>();
 		scrEnemyHealth = GetComponent<scr_EnemyHealth>();
 		meshEnemy = GetComponentInChildren<MeshRenderer>();
 		fltDefaultOpacity = meshEnemy.material.color.a;
@@ -33,7 +33,7 @@ public class scr_EnemyAnimation : MonoBehaviour {
 	//******************************************************************************
 	void Update ()
 	{
-		if (blnAttackMode != scrEnemyAI.GetCurrentMode())
+		if (blnAttackMode != scrEnemySight.blnPlayerInSight)
 			ChangeMode();
 		if (scrEnemyHealth.GetIsBanished())
 			BanishGhost();

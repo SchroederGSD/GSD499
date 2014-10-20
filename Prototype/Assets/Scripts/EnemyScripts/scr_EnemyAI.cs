@@ -9,16 +9,18 @@ public class scr_EnemyAI : MonoBehaviour {
 	
 	private NavMeshAgent navAgent;
 
-	private const float fltChaseSpeed = 10f;
-	private const float fltPartolSpeed = 5f;
+	private const float fltChaseSpeed = 5f;
+	private const float fltPartolSpeed = 2f;
 
+	private int intWaypointIndex = 0;
 	private float fltSpeed = 0f;
 	private float fltPatrolWaitTime = 0.5f;
 	private float fltPatrolTimer = 0f;
-	private int intWaypointIndex = 0;
+	private Vector3 vecPatrolDestination;
 
 	private bool blnAttackMode = false;
 	private scr_EnemySight scrEnemySight;
+	private AudioSource audioGhost;
 
 	//*************************************************************************
 	//	Awake Method - Awake is called when the script instance is being loaded
@@ -26,8 +28,11 @@ public class scr_EnemyAI : MonoBehaviour {
 	void Awake()
 	{
 		navAgent = GetComponent<NavMeshAgent>();
+		//navAgent.enabled = false;
 		fltSpeed = fltPartolSpeed;
 		scrEnemySight = GetComponent<scr_EnemySight>();
+		vecPatrolDestination = patrolWaypoints[0].position;
+		audioGhost = GetComponent<AudioSource>();
 	}
 	//*************************************************************************
 	//	Fixed Update Method
@@ -35,10 +40,16 @@ public class scr_EnemyAI : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		if (scrEnemySight.blnPlayerInSight)
-			blnAttackMode = true;
+		{
+			fltSpeed = fltChaseSpeed;
+			Chase();
+		}
 		else
+		{
 			blnAttackMode = false;
-		Patrol();
+			fltSpeed = fltPartolSpeed;
+			Chase();
+		}
 	}
 	//*************************************************************************
 	//	Patrol Method - Enemy moves between waypoints
@@ -46,26 +57,63 @@ public class scr_EnemyAI : MonoBehaviour {
 	void Patrol()
 	{
 		Vector3 vecTemp = new Vector3 (1000f, 1000f, 1000f);
+		float fltDistanceRemaining = 0f;
 
-		navAgent.speed = fltSpeed;
+		fltDistanceRemaining = Vector3.Distance(transform.position, vecPatrolDestination);
 
-		if(navAgent.destination == vecTemp || navAgent.remainingDistance < navAgent.stoppingDistance)
+		if (vecPatrolDestination == vecTemp || fltDistanceRemaining < navAgent.stoppingDistance)
 		{
 			fltPatrolTimer += Time.deltaTime;
 
+			if (fltPatrolTimer >= fltPatrolWaitTime)
+			{
+				fltPatrolTimer = 0f;
+				if (intWaypointIndex == patrolWaypoints.Length - 1)
+					intWaypointIndex = 0;
+				else
+					intWaypointIndex++;
+			}
+		}
+		else
+		{
+			fltPatrolTimer = 0f;
+			transform.LookAt(vecPatrolDestination);
+			transform.position += transform.forward * Time.deltaTime * fltSpeed;
+		}
+
+		vecPatrolDestination = patrolWaypoints[intWaypointIndex].position;
+
+	}
+	//*************************************************************************
+	//	Chase Method - Enemy
+	//*************************************************************************
+	void Chase()
+	{
+		Vector3 vecTemp = new Vector3 (1000f, 1000f, 1000f);
+
+		//if (!blnAttackMode)
+			//audioGhost.Play();
+
+		//blnAttackMode = true;
+		navAgent.speed = fltSpeed;
+		
+		if(navAgent.destination == vecTemp || navAgent.remainingDistance < navAgent.stoppingDistance)
+		{
+			fltPatrolTimer += Time.deltaTime;
+			
 			if(fltPatrolTimer >= fltPatrolWaitTime)
 			{
 				if(intWaypointIndex == patrolWaypoints.Length - 1)
 					intWaypointIndex = 0;
 				else
 					intWaypointIndex++;
-
+				
 				fltPatrolTimer = 0f;
 			}
 		}
 		else
 			fltPatrolTimer = 0f;
-
+		
 		navAgent.destination = patrolWaypoints[intWaypointIndex].position;
 		transform.LookAt(transform.position + navAgent.desiredVelocity);
 	}
@@ -74,7 +122,8 @@ public class scr_EnemyAI : MonoBehaviour {
 	//*************************************************************************
 	public void BanishGhost()
 	{
-		navAgent.Stop();
+		if (navAgent.enabled)
+			navAgent.Stop();
 		GetComponent<CapsuleCollider>().enabled = false;
 		GetComponent<SphereCollider>().enabled = false;
 		GetComponentInChildren<Light>().enabled = false;
@@ -84,6 +133,7 @@ public class scr_EnemyAI : MonoBehaviour {
 	//*************************************************************************
 	public void RespawnGhost()
 	{
+		//navAgent.enabled = false;
 		GetComponent<CapsuleCollider>().enabled = true;
 		GetComponent<SphereCollider>().enabled = true;
 		GetComponentInChildren<Light>().enabled = true;
@@ -93,7 +143,5 @@ public class scr_EnemyAI : MonoBehaviour {
 	//*************************************************************************
 	public void SetWaypointIndex(int index)
 	{	intWaypointIndex = index;	}
-
-	public bool GetCurrentMode()
-	{	return blnAttackMode;		}
+	
 }

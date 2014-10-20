@@ -1,10 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\GSD_431\Schroeder_GSD431\Assets\Adventure Scripts\Objects\ObjectLookUp.js">
-    <Files>
-      <File FileName="..\GSD_431\Schroeder_GSD431\Assets\Adventure Scripts\Objects\ObjectLookUp.js" Line="17" Column="31" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
