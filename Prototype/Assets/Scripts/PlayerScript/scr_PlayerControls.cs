@@ -10,7 +10,6 @@ public class scr_PlayerControls : MonoBehaviour {
 	private float fltRotSpeed = 100f;
 	private float fltGravity = -9.81f;
 	private float fltRayLength = 6f;
-	private Vector3 vecRotation = new Vector3(0f, 0f, 1f);
 
 	private bool blnFlashlightOn = false;
 	private bool blnControlActive = true;

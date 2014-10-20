@@ -6,8 +6,11 @@ public class scr_EnemySight : MonoBehaviour {
 	//	Variables
 	//***********************************
 	public bool blnPlayerInSight = false;
+	public Vector3 vecLastPlayerSighting;
+
 	private float fltFieldOfView = 100f;
 	private SphereCollider colSphere;
+	private scr_GameControl scrGameControl;
 
 	//*************************************************************************
 	//	Awake Method - Awake is called when the script instance is being loaded
@@ -15,6 +18,8 @@ public class scr_EnemySight : MonoBehaviour {
 	void Awake()
 	{
 		colSphere = GetComponent<SphereCollider>();
+		scrGameControl = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<scr_GameControl>();
+		vecLastPlayerSighting = scrGameControl.vecRestPosition;
 	}
 	//*************************************************************************
 	//	Update Method
@@ -24,7 +29,7 @@ public class scr_EnemySight : MonoBehaviour {
 	
 	}
 	//*************************************************************************
-	//	On Trigger Stay Method
+	//	On Trigger Stay Method - Player might be within sight
 	//*************************************************************************
 	void OnTriggerStay(Collider other)
 	{
@@ -46,13 +51,14 @@ public class scr_EnemySight : MonoBehaviour {
 					if (hit.collider.gameObject.tag == Tags.player)
 					{
 						blnPlayerInSight = true;
+						vecLastPlayerSighting = hit.collider.gameObject.transform.position;
 					}
 				}
 			}
 		}
 	}
 	//*************************************************************************
-	//	On Trigger Stay Method
+	//	On Trigger Exit Method - Player becomes out of sight
 	//*************************************************************************
 	void OnTriggerExit(Collider other)
 	{

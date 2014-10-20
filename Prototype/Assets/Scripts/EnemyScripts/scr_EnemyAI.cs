@@ -20,6 +20,7 @@ public class scr_EnemyAI : MonoBehaviour {
 
 	private bool blnAttackMode = false;
 	private scr_EnemySight scrEnemySight;
+	private scr_GameControl scrGameControl;
 	private AudioSource audioGhost;
 
 	//*************************************************************************
@@ -28,8 +29,7 @@ public class scr_EnemyAI : MonoBehaviour {
 	void Awake()
 	{
 		navAgent = GetComponent<NavMeshAgent>();
-		//navAgent.enabled = false;
-		fltSpeed = fltPartolSpeed;
+		navAgent.enabled = false;
 		scrEnemySight = GetComponent<scr_EnemySight>();
 		vecPatrolDestination = patrolWaypoints[0].position;
 		audioGhost = GetComponent<AudioSource>();
@@ -39,7 +39,7 @@ public class scr_EnemyAI : MonoBehaviour {
 	//*************************************************************************
 	void FixedUpdate ()
 	{
-		if (scrEnemySight.blnPlayerInSight)
+		if (scrEnemySight.blnPlayerInSight || blnAttackMode)
 		{
 			fltSpeed = fltChaseSpeed;
 			Chase();
@@ -48,7 +48,7 @@ public class scr_EnemyAI : MonoBehaviour {
 		{
 			blnAttackMode = false;
 			fltSpeed = fltPartolSpeed;
-			Chase();
+			Patrol();
 		}
 	}
 	//*************************************************************************
@@ -59,6 +59,7 @@ public class scr_EnemyAI : MonoBehaviour {
 		Vector3 vecTemp = new Vector3 (1000f, 1000f, 1000f);
 		float fltDistanceRemaining = 0f;
 
+		navAgent.enabled = false;
 		fltDistanceRemaining = Vector3.Distance(transform.position, vecPatrolDestination);
 
 		if (vecPatrolDestination == vecTemp || fltDistanceRemaining < navAgent.stoppingDistance)
@@ -82,7 +83,6 @@ public class scr_EnemyAI : MonoBehaviour {
 		}
 
 		vecPatrolDestination = patrolWaypoints[intWaypointIndex].position;
-
 	}
 	//*************************************************************************
 	//	Chase Method - Enemy
@@ -90,32 +90,25 @@ public class scr_EnemyAI : MonoBehaviour {
 	void Chase()
 	{
 		Vector3 vecTemp = new Vector3 (1000f, 1000f, 1000f);
-
-		//if (!blnAttackMode)
-			//audioGhost.Play();
-
-		//blnAttackMode = true;
+		navAgent.enabled = true;
 		navAgent.speed = fltSpeed;
-		
-		if(navAgent.destination == vecTemp || navAgent.remainingDistance < navAgent.stoppingDistance)
+
+		if (!blnAttackMode)
 		{
-			fltPatrolTimer += Time.deltaTime;
-			
-			if(fltPatrolTimer >= fltPatrolWaitTime)
-			{
-				if(intWaypointIndex == patrolWaypoints.Length - 1)
-					intWaypointIndex = 0;
-				else
-					intWaypointIndex++;
-				
-				fltPatrolTimer = 0f;
-			}
+			audioGhost.Play();
+			blnAttackMode = true;
 		}
-		else
-			fltPatrolTimer = 0f;
-		
-		navAgent.destination = patrolWaypoints[intWaypointIndex].position;
-		transform.LookAt(transform.position + navAgent.desiredVelocity);
+
+		if(true) // player is not dead)
+		{
+			if (scrEnemySight.blnPlayerInSight)
+			{
+				navAgent.destination = scrEnemySight.vecLastPlayerSighting;
+				transform.LookAt(transform.position + navAgent.desiredVelocity);
+			}
+			else if (navAgent.remainingDistance < navAgent.stoppingDistance)
+				blnAttackMode = false;
+		}
 	}
 	//*************************************************************************
 	//	Banish Ghost Method - Stops movement and makes ghost inactive
@@ -127,16 +120,19 @@ public class scr_EnemyAI : MonoBehaviour {
 		GetComponent<CapsuleCollider>().enabled = false;
 		GetComponent<SphereCollider>().enabled = false;
 		GetComponentInChildren<Light>().enabled = false;
+		blnAttackMode = false;
+		scrEnemySight.blnPlayerInSight = false;
 	}
 	//*************************************************************************
 	//	Respawn Ghost Method - Makes ghost active
 	//*************************************************************************
 	public void RespawnGhost()
 	{
-		//navAgent.enabled = false;
+		navAgent.enabled = false;
 		GetComponent<CapsuleCollider>().enabled = true;
 		GetComponent<SphereCollider>().enabled = true;
 		GetComponentInChildren<Light>().enabled = true;
+		print(scrEnemySight.blnPlayerInSight + " " + blnAttackMode);
 	}
 	//*************************************************************************
 	// Setters and Getters
