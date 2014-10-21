@@ -7,6 +7,8 @@ Project("{156D9284-745E-6849-A7D0-C3467F13EF1B}") = "Haunted Maze", "Assembly-CS
 EndProject
 Project("{156D9284-745E-6849-A7D0-C3467F13EF1B}") = "Haunted Maze", "Assembly-UnityScript-firstpass.unityproj", "{A486593D-D8B3-42C2-B0D9-3A9C6202F539}"
 EndProject
+Project("{156D9284-745E-6849-A7D0-C3467F13EF1B}") = "Haunted Maze", "Assembly-UnityScript.unityproj", "{B5B238A1-7BD1-1D79-32A6-0F655DCF83C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,11 +27,15 @@ Global
 		{A486593D-D8B3-42C2-B0D9-3A9C6202F539}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A486593D-D8B3-42C2-B0D9-3A9C6202F539}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A486593D-D8B3-42C2-B0D9-3A9C6202F539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5B238A1-7BD1-1D79-32A6-0F655DCF83C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5B238A1-7BD1-1D79-32A6-0F655DCF83C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5B238A1-7BD1-1D79-32A6-0F655DCF83C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5B238A1-7BD1-1D79-32A6-0F655DCF83C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																							GlobalSection(MonoDevelopProperties) = preSolution
+																																										GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																																	GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> origin/master

@@ -1,11 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\FinalProject_GSD499\Assets\Scripts\PlayerScript\scr_PlayerControls.cs">
-    <Files>
-      <File FileName="..\..\FinalProject_GSD499\Assets\Scripts\PlayerScript\scr_PlayerControls.cs" Line="87" Column="22" />
-      <File FileName="..\..\FinalProject_GSD499\Assets\Scripts\UnappliedScripts\Tags.cs" Line="15" Column="57" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
