@@ -22,13 +22,6 @@ public class scr_EnemySight : MonoBehaviour {
 		vecLastPlayerSighting = scrGameControl.vecRestPosition;
 	}
 	//*************************************************************************
-	//	Update Method
-	//*************************************************************************
-	void Update ()
-	{
-	
-	}
-	//*************************************************************************
 	//	On Trigger Stay Method - Player might be within sight
 	//*************************************************************************
 	void OnTriggerStay(Collider other)

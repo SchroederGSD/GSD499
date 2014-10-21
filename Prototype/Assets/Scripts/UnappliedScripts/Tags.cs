@@ -12,4 +12,5 @@ public class Tags : MonoBehaviour
 	public const string mainLight = "MainLight";
 	public const string fader = "Fader";
 	public const string waypoint = "Waypoint";
+	public const string level = "Level";
 }

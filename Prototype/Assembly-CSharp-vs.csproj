@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyAI.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyAnimation.cs" />
+     <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyDisable.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemySight.cs" />
      <Compile Include="Assets\Scripts\GameScripts\scr_GameControl.cs" />
