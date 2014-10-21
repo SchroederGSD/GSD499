@@ -1,7 +1,1 @@
-This is a test document.
-
-Adding second line to continue test.
-
-Adding third line before updating.
-
-Third line of testing on second computer.
+Changing document to test connection to server on 10/21/14.
