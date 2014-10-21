@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Group1 Scripts\GameManager.js" />
      <Compile Include="Assets\Group1 Scripts\InventoryManager.js" />
+     <Compile Include="Assets\Group1 Scripts\NPC_Dialogue.js" />
      <Compile Include="Assets\Group1 Scripts\Rotate_Diamond_Script.js" />
      <Compile Include="Assets\Group1 Scripts\Rotate_Flashlight_Script1.js" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />

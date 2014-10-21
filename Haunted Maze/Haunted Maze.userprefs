@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Group1 Scripts\GameManager.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Group1 Scripts\NPC_Dialogue.js">
     <Files>
-      <File FileName="Assets\Group1 Scripts\GameManager.js" Line="12" Column="38" />
-      <File FileName="Assets\Group1 Scripts\InventoryManager.js" Line="16" Column="77" />
+      <File FileName="Assets\Group1 Scripts\GameManager.js" Line="1" Column="1" />
+      <File FileName="Assets\Group1 Scripts\InventoryManager.js" Line="1" Column="1" />
+      <File FileName="Assets\Group1 Scripts\NPC_Dialogue.js" Line="27" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
