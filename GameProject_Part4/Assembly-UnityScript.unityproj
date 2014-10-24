@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{43DB8FAF-3534-92C4-8B1D-20E57677AD6A}</ProjectGuid>
+	<ProjectGuid>{03807282-D268-6E95-B2BE-55806FE0C1BA}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-UnityScript</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,18 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Prefabs\Diamond Prefabs\Example\GemSpawner.cs" />
-     <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyAI.cs" />
-     <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyAnimation.cs" />
-     <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyDisable.cs" />
-     <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyHealth.cs" />
-     <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemySight.cs" />
-     <Compile Include="Assets\Scripts\GameScripts\scr_GameControl.cs" />
-     <Compile Include="Assets\Scripts\ObjectScripts\scr_FloatingCollectable.cs" />
-     <Compile Include="Assets\Scripts\ObjectScripts\scr_PumpkinLight.cs" />
-     <Compile Include="Assets\Scripts\PlayerScript\scr_FlashlightControl.cs" />
-     <Compile Include="Assets\Scripts\PlayerScript\scr_PlayerControls.cs" />
-     <Compile Include="Assets\Scripts\UnappliedScripts\Tags.cs" />
+     <Compile Include="Assets\Scripts\Diamond Rotate Script\Rotate_Diamond_Script.js" />
+     <Compile Include="Assets\Scripts\InventoryScript\InventoryManager.js" />
      <None Include="Assets\Prefabs\Diamond Prefabs\diamond shader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
