@@ -157,6 +157,7 @@ public class scr_PlayerControls : MonoBehaviour {
 		{
 			blnHasFlashlight = true;
 			scrGameControl.RemoveObject(obj);
+			scrGameControl.OpenGates("obj_StartGate");
 		}
 		else if (obj.tag == Tags.collectible)
 		{
@@ -164,8 +165,12 @@ public class scr_PlayerControls : MonoBehaviour {
 			scrGameControl.RemoveObject(obj);
 		}
 	}
+	//*************************************************************************
+	//	Kill Player Method
+	//*************************************************************************
 	public void KillPlayer()
 	{
+		scrGameControl.OpenGates("obj_StartGate");
 		blnControlActive = false;
 		blnDead = true;
 		blnFaderShow = true;
@@ -189,6 +194,9 @@ public class scr_PlayerControls : MonoBehaviour {
 			blnFaderShow = false;
 		}
 	}
+	//*************************************************************************
+	//	Fader Show Hide Method
+	//*************************************************************************
 	void FaderShowHide()
 	{
 		MeshRenderer meshFader = objFader.GetComponent<MeshRenderer>();

@@ -12,6 +12,8 @@ public class scr_GameControl : MonoBehaviour {
 	public Quaternion qtnStartingRotation;
 
 	private int intCollectiblesFound = 0;
+	private scr_Animation[] scrAnimation = null;
+	private GameObject objStartGateCloser = null;
 	
 	//******************************************************************************
 	// Awake Method
@@ -20,6 +22,16 @@ public class scr_GameControl : MonoBehaviour {
 	{
 		vecStartingPosition = GameObject.FindGameObjectWithTag(Tags.player).transform.position;
 		qtnStartingRotation = GameObject.FindGameObjectWithTag(Tags.player).transform.rotation;
+		objStartGateCloser = GameObject.Find("StartGateCloser");
+	}
+
+	void Update()
+	{
+		if (intCollectiblesFound == 7)
+		{
+			OpenGates("obj_EndGate");
+			intCollectiblesFound = 0;
+		}
 	}
 	//******************************************************************************
 	//	Remove Object Method - Removes object from scene
@@ -34,5 +46,17 @@ public class scr_GameControl : MonoBehaviour {
 	public void FoundCollectible()
 	{
 		intCollectiblesFound++;
+	}
+	//******************************************************************************
+	//
+	//******************************************************************************
+	public void OpenGates(string strGateName)
+	{
+		if (strGateName == "obj_StartGate")
+			objStartGateCloser.SetActive(true);
+
+		scrAnimation = GameObject.Find(strGateName).GetComponentsInChildren<scr_Animation>();
+		foreach (scr_Animation anim in scrAnimation)
+			anim.OpenGate();
 	}
 }
