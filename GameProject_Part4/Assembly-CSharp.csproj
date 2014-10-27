@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Prefabs\Diamond Prefabs\Example\GemSpawner.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyAI.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyAnimation.cs" />
      <Compile Include="Assets\Scripts\EnemyScripts\scr_EnemyDisable.cs" />
@@ -61,7 +60,7 @@
      <Compile Include="Assets\Scripts\PlayerScript\scr_FlashlightControl.cs" />
      <Compile Include="Assets\Scripts\PlayerScript\scr_PlayerControls.cs" />
      <Compile Include="Assets\Scripts\UnappliedScripts\Tags.cs" />
-     <None Include="Assets\Prefabs\Diamond Prefabs\diamond shader.shader" />
+     <None Include="Assets\Prefabs\OriginalDiamonds\diamond shader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
