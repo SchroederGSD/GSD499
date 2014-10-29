@@ -12,6 +12,7 @@ public class scr_GameControl : MonoBehaviour {
 	public Quaternion qtnStartingRotation;
 
 	private int intCollectiblesFound = 0;
+	private int intNumOfLives = 3;
 	private scr_Animation[] scrAnimation = null;
 	private GameObject objStartGateCloser = null;
 	
@@ -48,7 +49,7 @@ public class scr_GameControl : MonoBehaviour {
 		intCollectiblesFound++;
 	}
 	//******************************************************************************
-	//
+	//	Open Gates Method
 	//******************************************************************************
 	public void OpenGates(string strGateName)
 	{
@@ -59,4 +60,11 @@ public class scr_GameControl : MonoBehaviour {
 		foreach (scr_Animation anim in scrAnimation)
 			anim.OpenGate();
 	}
+	//******************************************************************************
+	//	Getter Methods
+	//******************************************************************************
+	public int GetCollectibleCount()
+	{	return intCollectiblesFound;	}
+	public int GetNumOfLives()
+	{	return intNumOfLives;			}
 }

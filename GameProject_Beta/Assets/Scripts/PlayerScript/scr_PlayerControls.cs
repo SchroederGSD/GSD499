@@ -37,6 +37,7 @@ public class scr_PlayerControls : MonoBehaviour {
 		objFader = GameObject.FindGameObjectWithTag (Tags.fader);
 		scrFlashlightControl = objFlashlight.GetComponent<scr_FlashlightControl>();
 		scrGameControl = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<scr_GameControl>();
+		ActivateFlashlight();
 	}
 	//*************************************************************************
 	//	Fixed Update Method
