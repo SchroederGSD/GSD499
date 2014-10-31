@@ -25,7 +25,7 @@ public class scr_CreditsScreen : MonoBehaviour {
 	private string strMiddleTitle03 = "3D ARTISTS";
 	private string strMiddleTitle04 = "SPECIAL THANKS";
 
-	private string strMiddle03 = "ArtTI\nnolgraphic";//Yuji Nagata, VIS Games
+	private string strMiddle03 = "ArtTI\nnolgraphic";
 	private string strMiddle04 = "Patrick McDougle\n" +
 								 "For All the Advice and Input\n\n" +
 								 "To the Unity Team\n" +
