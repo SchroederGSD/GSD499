@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\GameProject_Beta_2\Assets\Scripts\GameScripts\scr_StartScreen.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameScripts\scr_HUD.cs">
     <Files>
-      <File FileName="..\GameProject_Beta_2\Assets\Scripts\GameScripts\scr_StartScreen.cs" Line="8" Column="92" />
+      <File FileName="Assets\Scripts\GameScripts\scr_HUD.cs" Line="20" Column="14" />
+      <File FileName="..\GameProject_Beta_2\Assets\Scripts\GameScripts\scr_StartScreen.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameScripts\scr_HUD.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameScripts\scr_GameControl.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
