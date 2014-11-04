@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameScripts\scr_HUD.cs">
+    <Files>
+      <File FileName="Assets\Scripts\GameScripts\scr_GameControl.cs" Line="97" Column="26" />
+      <File FileName="Assets\Scripts\PlayerScript\scr_PlayerControls.cs" Line="107" Column="32" />
+      <File FileName="Assets\Scripts\GameScripts\scr_HUD.cs" Line="45" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -14,7 +14,6 @@ public class scr_PlayerControls : MonoBehaviour
 	private float fltRespawnDelay = 3f;
 
 	private bool blnFlashlightOn = false;
-	private bool blnControlActive = true;
 	private bool blnHasFlashlight = false;
 	private bool blnDead = false;
 
@@ -45,7 +44,7 @@ public class scr_PlayerControls : MonoBehaviour
 	//*************************************************************************
 	void FixedUpdate ()
 	{
-		if (blnControlActive)
+		if (scrGameControl.GetPlayerIsActive())
 		{
 			RotatePlayer();
 			MovePlayer();
@@ -61,7 +60,7 @@ public class scr_PlayerControls : MonoBehaviour
 	//*************************************************************************
 	void Update()
 	{
-		if (blnControlActive && blnHasFlashlight)
+		if (scrGameControl.GetPlayerIsActive() && blnHasFlashlight)
 			ActivateFlashlight();
 		CheckFlashlightHit();
 	}
@@ -105,12 +104,14 @@ public class scr_PlayerControls : MonoBehaviour
 
 		if (scrFlashlightControl.blnFlashlightActive)
 		{
+			scrGameControl.DrainBattery(Time.deltaTime);
+
 			if (Physics.Raycast(position, transform.forward, out hit, fltRayLength))
 			{
 				if (hit.transform.tag == Tags.enemy)
 				{
 					goEnemy = hit.transform.gameObject;
-					goEnemy.GetComponent<scr_EnemyHealth>().TakeDamage(100f);
+					goEnemy.GetComponent<scr_EnemyHealth>().TakeDamage(25f);
 				}
 			}
 		}
@@ -152,8 +153,8 @@ public class scr_PlayerControls : MonoBehaviour
 	//*************************************************************************
 	public void KillPlayer()
 	{
-		scrGameControl.OpenGates("obj_StartGate");
-		blnControlActive = false;
+		scrGameControl.DeactivatePlayer();
+		scrGameControl.LostLife();
 		blnDead = true;
 	}
 	//*************************************************************************
@@ -164,9 +165,10 @@ public class scr_PlayerControls : MonoBehaviour
 		fltDeadTimer += Time.deltaTime;
 		if (fltDeadTimer >= fltRespawnDelay)
 		{
-			blnControlActive = true;
+			scrGameControl.ActivatePlayer();
 			blnDead = false;
 			fltDeadTimer = 0f;
+			scrGameControl.OpenGates("obj_StartGate");
 		}
 		else if (fltDeadTimer >= (fltRespawnDelay / 2))
 		{

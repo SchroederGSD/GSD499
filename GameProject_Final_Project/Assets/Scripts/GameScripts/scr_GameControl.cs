@@ -13,6 +13,13 @@ public class scr_GameControl : MonoBehaviour {
 
 	private int intCollectiblesFound = 0;
 	private int intNumOfLives = 3;
+	private float fltBatteryLife = 100f;
+	private float fltBatteryRecharge = 25f;
+
+	private bool blnPlayerIsActive = true;
+	private bool blnOpenGates = false;
+	private bool blnOutOfLives = false;
+
 	private scr_Animation[] scrAnimation = null;
 	private GameObject objStartGateCloser = null;
 	
@@ -28,10 +35,15 @@ public class scr_GameControl : MonoBehaviour {
 
 	void Update()
 	{
-		if (intCollectiblesFound == 7)
+		if (blnOpenGates)
 		{
 			OpenGates("obj_EndGate");
-			intCollectiblesFound = 0;
+			blnOpenGates = false;
+		}
+
+		if (blnOutOfLives)
+		{
+			blnPlayerIsActive = false;
 		}
 	}
 	//******************************************************************************
@@ -47,6 +59,9 @@ public class scr_GameControl : MonoBehaviour {
 	public void FoundCollectible()
 	{
 		intCollectiblesFound++;
+
+		if (intCollectiblesFound == 7)
+			blnOpenGates = true;
 	}
 	//******************************************************************************
 	//	Open Gates Method
@@ -61,10 +76,56 @@ public class scr_GameControl : MonoBehaviour {
 			anim.OpenGate();
 	}
 	//******************************************************************************
+	//	Lost Life Method - Decreases the number of lives by one
+	//******************************************************************************
+	public void LostLife()
+	{
+		intNumOfLives--;
+
+		if (intNumOfLives <= 0)
+			blnOutOfLives = true;
+	}
+	//******************************************************************************
+	//	Drain Battery Method
+	//******************************************************************************
+	public void DrainBattery(float amount)
+	{
+		fltBatteryLife -= amount;
+
+		if (fltBatteryLife < 0)
+			fltBatteryLife = 0;
+		print (fltBatteryLife);
+	}
+	//******************************************************************************
+	//	
+	//******************************************************************************
+	public void IncreaseBatteryLife()
+	{
+		fltBatteryLife += fltBatteryRecharge;
+	}
+	//******************************************************************************
+	//	Activate Player Method
+	//******************************************************************************
+	public void ActivatePlayer()
+	{
+		blnPlayerIsActive = true;
+	}
+	//******************************************************************************
+	//	Deactivate Player Method
+	//******************************************************************************
+	public void DeactivatePlayer()
+	{
+		blnPlayerIsActive = false;
+	}
+	//******************************************************************************
 	//	Getter Methods
 	//******************************************************************************
 	public int GetCollectibleCount()
 	{	return intCollectiblesFound;	}
 	public int GetNumOfLives()
 	{	return intNumOfLives;			}
+	public float GetBatteryLife()
+	{	return fltBatteryLife;			}
+	public bool GetPlayerIsActive()
+	{	return blnPlayerIsActive;		}
 }
