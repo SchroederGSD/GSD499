@@ -17,5 +17,11 @@ public class scr_MenuScreen : MonoBehaviour
 			scrStartSceneControl.blnStartGame = true;
 			GetComponent<scr_MenuScreen>().enabled = false;
 		}
+
+		if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)) 
+		{
+			scrStartSceneControl.blnStartGame = true;
+			GetComponent<scr_MenuScreen>().enabled = false;
+		}
 	}
 }
