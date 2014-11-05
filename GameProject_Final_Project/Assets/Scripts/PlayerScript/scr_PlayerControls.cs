@@ -12,7 +12,7 @@ public class scr_PlayerControls : MonoBehaviour
 	private float fltRayLength = 8f;
 	private float fltDeadTimer = 0f;
 	private float fltRespawnDelay = 3f;
-	private float fltFlashlightDamage = 75f;
+	private float fltFlashlightDamage = 100f;
 
 	private bool blnFlashlightOn = false;
 	private bool blnHasFlashlight = false;
