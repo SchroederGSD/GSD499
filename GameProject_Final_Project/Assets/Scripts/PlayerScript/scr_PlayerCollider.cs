@@ -22,6 +22,7 @@ public class scr_PlayerCollider : MonoBehaviour
 		if (obj.tag == Tags.item)
 		{
 			scrPlayerControls.SetHasFlashlight(true);
+			scrGameControl.IncreaseBatteryLife();
 			scrGameControl.RemoveObject(obj);
 			scrGameControl.OpenGates("obj_StartGate");
 		}

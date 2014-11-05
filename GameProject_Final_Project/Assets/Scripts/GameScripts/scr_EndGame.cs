@@ -3,8 +3,18 @@ using System.Collections;
 
 public class scr_EndGame : MonoBehaviour
 {
-	void OnTriggerEnter()
+	private scr_GameControl scrGameControl = null;
+	private scr_ScreenFadeInOut scrScreenFadeInOut = null;
+
+	void Awake()
 	{
-		Application.LoadLevel("Scene_Credits");
+		scrGameControl = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<scr_GameControl>();
+		scrScreenFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent<scr_ScreenFadeInOut>();
+	}
+
+	void OnTriggerStay()
+	{
+		scrGameControl.EndGame();
+		scrScreenFadeInOut.EndScene("Scene_Credits");
 	}
 }

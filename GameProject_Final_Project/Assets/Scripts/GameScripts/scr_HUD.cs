@@ -52,12 +52,19 @@ public class scr_HUD : MonoBehaviour
 	//******************************************************************************
 	void OnGUI()
 	{
-		GUI.DrawTexture(new Rect(50f, 10f, 146f, 75f), txtLives);
-		GUI.DrawTexture(new Rect(Screen.width - 205f, 10f, 155f, 75f), txtDiamonds);
-		GUI.DrawTexture (new Rect (Screen.width - 231f, Screen.height - 74f, 160f, 60f), txtBattery);
-		GUI.DrawTexture (new Rect (Screen.width - intMeterAdjust, Screen.height - 66f, intCurrLength, 44f), txtCurrMeter);
-		GUI.Label(new Rect(150f, 38f, 100f, 50f), intNumOfLives.ToString(), guiStyle);
-		GUI.Label(new Rect(Screen.width - 190f, 35f, 100f, 50f), intCollectibleCount.ToString() + " / 7", guiStyle);
+		if (scrGameControl.GetPlayerIsActive())
+		{
+			GUI.DrawTexture(new Rect(50f, 10f, 146f, 75f), txtLives);
+			GUI.DrawTexture(new Rect(Screen.width - 205f, 10f, 155f, 75f), txtDiamonds);
+			GUI.Label(new Rect(150f, 38f, 100f, 50f), intNumOfLives.ToString(), guiStyle);
+			GUI.Label(new Rect(Screen.width - 190f, 35f, 100f, 50f), intCollectibleCount.ToString() + " / 7", guiStyle);
+
+			if (fltPercentLeft >= 0)
+			{
+				GUI.DrawTexture (new Rect (Screen.width - 231f, Screen.height - 74f, 160f, 60f), txtBattery);
+				GUI.DrawTexture (new Rect (Screen.width - intMeterAdjust, Screen.height - 66f, intCurrLength, 44f), txtCurrMeter);
+			}
+		}
 	}
 
 	void FindMeterLength()

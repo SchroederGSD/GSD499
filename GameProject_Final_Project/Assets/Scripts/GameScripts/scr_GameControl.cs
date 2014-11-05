@@ -13,15 +13,23 @@ public class scr_GameControl : MonoBehaviour {
 
 	private int intCollectiblesFound = 0;
 	private int intNumOfLives = 3;
-	private float fltBatteryLife = 100f;
+	private float fltBatteryLife = -99f;
 	private float fltBatteryRecharge = 25f;
+	private float fltStartDelayTime = 5f;
+	private float fltStartTimer = 0f;
 
-	private bool blnPlayerIsActive = true;
+	private bool blnPlayerIsActive = false;
 	private bool blnOpenGates = false;
 	private bool blnOutOfLives = false;
+	private bool blnPlayGame = false;
+	private bool blnPlayDialogue = true;
+	private bool blnGameOver = false;
 
 	private scr_Animation[] scrAnimation = null;
 	private GameObject objStartGateCloser = null;
+	private scr_Dialogue scrDialogue = null;
+	//private scr_ScreenFadeInOut scrScreenFadeInOut = null;
+	private AudioSource audioGame;
 	
 	//******************************************************************************
 	// Awake Method
@@ -31,19 +39,55 @@ public class scr_GameControl : MonoBehaviour {
 		vecStartingPosition = GameObject.FindGameObjectWithTag(Tags.player).transform.position;
 		qtnStartingRotation = GameObject.FindGameObjectWithTag(Tags.player).transform.rotation;
 		objStartGateCloser = GameObject.Find("StartGateCloser");
+		scrDialogue = GetComponent<scr_Dialogue>();
+		//scrScreenFadeInOut = GameObject.FindGameObjectWithTag(Tags.fader).GetComponent<scr_ScreenFadeInOut>();
+		audioGame = GetComponent<AudioSource>();
 	}
-
+	//******************************************************************************
+	// Update Method
+	//******************************************************************************
 	void Update()
 	{
+		if (blnGameOver)
+			StopMusic();
+		else if (blnPlayGame)
+			PlayGame();
+		else if (blnPlayDialogue)
+			PlayDialogue();
+		else if (scrDialogue.GetDialogueHasEnded())
+		{
+			blnPlayerIsActive = true;
+			blnPlayGame = true;
+		}
+	}
+	//******************************************************************************
+	//	Play Dialogue Method
+	//******************************************************************************
+	void PlayDialogue()
+	{
+		if (fltStartTimer > fltStartDelayTime)
+		{
+			scrDialogue.StartDialogue();
+			blnPlayDialogue = false;
+		}
+		else
+			fltStartTimer += Time.deltaTime;
+	}
+	//******************************************************************************
+	//	Play Game Method
+	//******************************************************************************
+	void PlayGame()
+	{
+		if (blnOutOfLives)
+		{
+			print ("Reached if statement");
+			blnPlayerIsActive = false;
+			blnGameOver = true;
+		}
 		if (blnOpenGates)
 		{
 			OpenGates("obj_EndGate");
 			blnOpenGates = false;
-		}
-
-		if (blnOutOfLives)
-		{
-			blnPlayerIsActive = false;
 		}
 	}
 	//******************************************************************************
@@ -82,8 +126,11 @@ public class scr_GameControl : MonoBehaviour {
 	{
 		intNumOfLives--;
 
-		if (intNumOfLives <= 0)
+		if (intNumOfLives == 0)
+		{
 			blnOutOfLives = true;
+			print(blnOutOfLives);
+		}
 	}
 	//******************************************************************************
 	//	Drain Battery Method
@@ -94,21 +141,34 @@ public class scr_GameControl : MonoBehaviour {
 
 		if (fltBatteryLife < 0)
 			fltBatteryLife = 0;
-		print (fltBatteryLife);
 	}
 	//******************************************************************************
-	//	
+	// Check Flashlight Has Power Method
+	//******************************************************************************
+	public bool CheckFlashlightHasPower()
+	{
+		if (fltBatteryLife > 0)
+			return true;
+		else
+			return false;
+	}
+	//******************************************************************************
+	//	Increase Battery Life Method
 	//******************************************************************************
 	public void IncreaseBatteryLife()
 	{
-		fltBatteryLife += fltBatteryRecharge;
+		if (fltBatteryLife == -99)
+			fltBatteryLife = 100f;
+		else
+			fltBatteryLife += fltBatteryRecharge;
 	}
 	//******************************************************************************
 	//	Activate Player Method
 	//******************************************************************************
 	public void ActivatePlayer()
 	{
-		blnPlayerIsActive = true;
+		if (!blnOutOfLives)
+			blnPlayerIsActive = true;
 	}
 	//******************************************************************************
 	//	Deactivate Player Method
@@ -116,6 +176,24 @@ public class scr_GameControl : MonoBehaviour {
 	public void DeactivatePlayer()
 	{
 		blnPlayerIsActive = false;
+	}
+	//******************************************************************************
+	//	End Game Method
+	//******************************************************************************
+	public void EndGame()
+	{
+		blnGameOver = true;
+		blnPlayerIsActive = false;
+	}
+	//******************************************************************************
+	//	Stop Music Method
+	//******************************************************************************
+	private void StopMusic()
+	{
+		if (audioGame.volume > 0.5f)
+			audioGame.volume = Mathf.Lerp(audioGame.volume, 0f, 1.5f * Time.deltaTime);
+		else
+			audioGame.volume = 0f;
 	}
 	//******************************************************************************
 	//	Getter Methods
@@ -128,4 +206,6 @@ public class scr_GameControl : MonoBehaviour {
 	{	return fltBatteryLife;			}
 	public bool GetPlayerIsActive()
 	{	return blnPlayerIsActive;		}
+	public bool GetPlayerIsOutOfLives()
+	{	return blnOutOfLives;			}
 }

@@ -12,6 +12,7 @@ public class scr_PlayerControls : MonoBehaviour
 	private float fltRayLength = 8f;
 	private float fltDeadTimer = 0f;
 	private float fltRespawnDelay = 3f;
+	private float fltFlashlightDamage = 75f;
 
 	private bool blnFlashlightOn = false;
 	private bool blnHasFlashlight = false;
@@ -102,16 +103,16 @@ public class scr_PlayerControls : MonoBehaviour
 		GameObject goEnemy;
 		Vector3 position = objFlashlight.transform.position;
 
-		if (scrFlashlightControl.blnFlashlightActive)
+		if (scrFlashlightControl.blnFlashlightActive && scrGameControl.CheckFlashlightHasPower())
 		{
-			scrGameControl.DrainBattery(Time.deltaTime);
+			scrGameControl.DrainBattery(Time.deltaTime * 1.5f);
 
 			if (Physics.Raycast(position, transform.forward, out hit, fltRayLength))
 			{
 				if (hit.transform.tag == Tags.enemy)
 				{
 					goEnemy = hit.transform.gameObject;
-					goEnemy.GetComponent<scr_EnemyHealth>().TakeDamage(25f);
+					goEnemy.GetComponent<scr_EnemyHealth>().TakeDamage(fltFlashlightDamage * Time.deltaTime);
 				}
 			}
 		}
@@ -133,16 +134,25 @@ public class scr_PlayerControls : MonoBehaviour
 
 		if (scrFlashlightControl.blnFlashlightActive && !blnFlashlightOn)
 		{
-			blnFlashlightOn = true;
-			foreach (Light lightComp in lightComponents)
-				lightComp.enabled = true;
-			objFlashlight.GetComponentInChildren<ParticleSystemRenderer>().enabled = true;
 			audioFlashlight.Play();
+			blnFlashlightOn = true;
+			if (scrGameControl.CheckFlashlightHasPower())
+			{
+				foreach (Light lightComp in lightComponents)
+					lightComp.enabled = true;
+				objFlashlight.GetComponentInChildren<ParticleSystemRenderer>().enabled = true;
+			}
 		}
 		else if (!scrFlashlightControl.blnFlashlightActive && blnFlashlightOn)
 		{
 			audioFlashlight.Play();
 			blnFlashlightOn = false;
+			foreach (Light lightComp in lightComponents)
+				lightComp.enabled = false;
+			objFlashlight.GetComponentInChildren<ParticleSystemRenderer>().enabled = false;
+		}
+		else if (!scrGameControl.CheckFlashlightHasPower())
+		{
 			foreach (Light lightComp in lightComponents)
 				lightComp.enabled = false;
 			objFlashlight.GetComponentInChildren<ParticleSystemRenderer>().enabled = false;
@@ -181,7 +191,10 @@ public class scr_PlayerControls : MonoBehaviour
 	//*************************************************************************
 	void FaderShowHide()
 	{
-		scrFader.PlayerDeath();
+		if (scrGameControl.GetPlayerIsOutOfLives())
+			scrFader.EndScene("Scene_GameOver");
+		else
+			scrFader.PlayerDeath();
 	}
 
 	public void SetHasFlashlight(bool bln)

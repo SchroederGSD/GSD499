@@ -3,6 +3,7 @@ using System.Collections;
 
 public class scr_MiniMapCamera : MonoBehaviour
 {
+	private scr_GameControl scrGameControl = null;
 	private Transform Player = null;
 	private float fltMaxX = 68f;
 	private float fltMinX = 10f;
@@ -13,12 +14,18 @@ public class scr_MiniMapCamera : MonoBehaviour
 
 	void Awake()
 	{
+		scrGameControl = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<scr_GameControl>();
 		Player = GameObject.FindGameObjectWithTag(Tags.player).transform;
 		fltWidthAdjust = (float)Screen.height / (float)Screen.width;
 		camera.rect = new Rect (0.01f, 0.01f, 0.35f * fltWidthAdjust, 0.35f);
 	}
 	void Update ()
 	{
+		if (scrGameControl.GetPlayerIsActive())
+			GetComponent<Camera>().enabled = true;
+		else
+			GetComponent<Camera>().enabled = false;
+
 		MoveCamera();
 	}
 
