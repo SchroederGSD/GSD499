@@ -30,11 +30,11 @@ public class scr_Dialogue : MonoBehaviour
 								   "see you.  If you are caught three times, you will forever be trapped\n" +
 								   "in this world and become a wandering ghost yourself.";
 	private string strDialogue04 = "Don't think me to be cruel for I have something for you.  Just over\n" +
-								   "there, you will see a magical flashlight that will help light the way\n" +
-								   "and banish the ghost for a short time.";
+								   "there, you will see a magical flashlight ('f' key) that will help light\n" +
+								   " the way and banish the ghost for a short time.";
 	private string strDialogue05 = "It has a limited battery life, so you will need to be careful about\n" +
-								   "using it.  Well, I have talked long enough.  It is now time for you to \n" +
-								   "be on your way.  Good luck. Hahahaha...\n";
+								   "using it ('spacebar').  Well, I have talked long enough.  It is now time \n" +
+								   "for you to be on your way.  Good luck. Hahahaha...\n";
 
 	
 	private void Update()
