@@ -45,7 +45,7 @@ public class scr_Dialogue : MonoBehaviour
 
 	private void DialogueControl()
 	{
-		if (Input.GetKeyUp("enter"))
+		if (Input.GetKeyUp("enter") || Input.GetKeyDown("return"))
 		{
 			//print ("Enter was pressed");
 			if (blnPlayDialogue)
